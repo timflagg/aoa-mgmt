@@ -1,7 +1,7 @@
 # gloo-mesh-demo-aoa
 
 ## version 2.0.9
-This repo provides a multitenant capable GitOps workflow structure that can be forked and used to demonstrate the deployment and configuration of a single or multi-cluster mesh demo as code using the Argo CD app-of-apps pattern. To get started you just need 1 cluster, you can find the multi-cluster setup if you switch branches
+This repo provides a multitenant capable GitOps workflow structure that can be forked and used to demonstrate the deployment and configuration of a multi-cluster mesh demo as code using the Argo CD app-of-apps pattern.
 
 # Prerequisites 
 - 1 Kubernetes Cluster
@@ -17,10 +17,9 @@ Run:
 ```
 
 Note:
-- A temporary (5 day currently) license key is used here for demonstration purposes
 - By default, the script expects to deploy into a cluster context named `mgmt`
 - Context parameters can be changed from defaults by changing the variables in the `deploy.sh` script. A check is done to ensure that the defined contexts exist before proceeding with the installation. Note that the character `_` is an invalid value if you are replacing default contexts
-- Although you may change the contexts where apps are deployed as describe above, the Gloo Mesh and Istio cluster names will remain stable references (i.e. `mgmt`)
+- Although you may change the contexts where apps are deployed as describe above, the Gloo Mesh and Istio cluster names will remain stable references (i.e. `mgmt`, `cluster1`, and `cluster2`)
 
 # App of Apps Explained
 Platform owners control the deployment of applications into the cluster with the app-of-apps pattern. The app-of-apps pattern uses a generic Argo Application to sync all manifests in a particular Git directory, rather than directly point to a Kustomize, YAML, or Helm configuration.
