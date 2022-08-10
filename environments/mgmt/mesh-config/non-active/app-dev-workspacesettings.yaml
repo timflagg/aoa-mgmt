@@ -1,0 +1,31 @@
+apiVersion: admin.gloo.solo.io/v2
+kind: WorkspaceSettings
+metadata:
+  name: app-dev-workspacesettings
+  namespace: gloo-mesh-app-config
+spec:
+  exportTo:
+  - resources:
+    - kind: SERVICE
+      labels:
+        app: productpage
+    - kind: SERVICE
+      labels:
+        app: reviews
+    - kind: ALL
+      labels:
+        app: in-mesh
+    - kind: ALL
+      labels:
+        expose: "true"
+    workspaces:
+    - name: gateways
+  importFrom:
+  - resources:
+    - kind: ALL
+    workspaces:
+    - name: gateways
+  options:
+    federation:
+      enabled: true
+      hostSuffix: global

@@ -1,0 +1,39 @@
+apiVersion: networking.gloo.solo.io/v2
+kind: RouteTable
+metadata:
+  labels:
+    expose: "true"
+  name: productpage-443
+  namespace: gloo-mesh-app-config
+spec:
+  hosts:
+  - 'bookinfo-local.glootest.com'
+  http:
+  - forwardTo:
+      destinations:
+      - kind: VIRTUAL_DESTINATION
+        port:
+          number: 9080
+        ref:
+          name: productpage
+          namespace: gloo-mesh-app-config
+          cluster: mgmt
+    labels:
+      waf: "true"
+    matchers:
+    - uri:
+        exact: /productpage
+    - uri:
+        prefix: /static
+    - uri:
+        exact: /login
+    - uri:
+        exact: /logout
+    - uri:
+        prefix: /api/v1/products
+    name: productpage
+  virtualGateways:
+  - cluster: mgmt
+    name: cluster1-north-south-gw-443
+    namespace: gloo-mesh-config
+  workloadSelectors: []

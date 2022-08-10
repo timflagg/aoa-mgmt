@@ -1,0 +1,33 @@
+apiVersion: networking.gloo.solo.io/v2
+kind: RouteTable
+metadata:
+  name: httpbin-rt-443
+  namespace: gloo-mesh-app-config
+  labels:
+    expose: "true"
+spec:
+  hosts:
+    - 'httpbin-local.glootest.com'
+  virtualGateways:
+    - name: cluster1-north-south-gw-443
+      namespace: gloo-mesh-config
+      cluster: mgmt
+  workloadSelectors: []
+  http:
+    - name: httpbin
+      labels:
+        oauth: "true"
+      matchers:
+      - uri:
+          exact: /get
+      - uri:
+          exact: /callback
+      forwardTo:
+        destinations:
+        - kind: VIRTUAL_DESTINATION
+          port:
+            number: 8000
+          ref:
+            name: httpbin-vd
+            namespace: gloo-mesh-app-config
+            cluster: mgmt
