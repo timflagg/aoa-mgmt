@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/ably77/aoa-mgmt/
-    targetRevision: HEAD
+    targetRevision: refactor
     path: environments/mgmt/infra/active/
   destination:
     server: https://kubernetes.default.svc
