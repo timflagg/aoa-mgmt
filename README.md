@@ -1,6 +1,6 @@
 # gloo-mesh-demo-aoa
 
-## version 2.0.9
+## version 2.1.0-beta18
 This repo provides a multitenant capable GitOps workflow structure that can be forked and used to demonstrate the deployment and configuration of a multi-cluster mesh demo as code using the Argo CD app-of-apps pattern.
 
 This repo is meant to be deployed along with the following repos to create the entire High Level Architecture diagram below.
@@ -20,8 +20,9 @@ This repo is meant to be deployed along with the following repos to create the e
 # Getting Started
 Run:
 ```
-./deploy.sh           # deploys on mgmt cluster
+./deploy.sh $LICENSE_KEY        # deploys on mgmt cluster
 ```
+The script will prompt you for a Gloo Mesh Enterprise license key if not provided as an input parameter
 
 Note:
 - By default, the script expects to deploy into a cluster context named `mgmt`
@@ -32,7 +33,7 @@ Note:
 The app-of-apps pattern uses a generic Argo Application to sync all manifests in a particular Git directory, rather than directly point to a Kustomize, YAML, or Helm configuration. Anything pushed into the `environment/<overlay>/active` directory is deployed by it's corresponding app-of-app
 ```
 environment
-├── cluster-config
+├── wave-1
 │   ├── active
 │   │   ├── cert-manager-cacerts.yaml
 │   │   ├── cert-manager-ns.yaml
@@ -40,8 +41,8 @@ environment
 │   │   ├── gloo-mesh-ns.yaml
 │   │   ├── relay-identity-token-secret.yaml
 │   │   └── relay-root-ca.yaml
-│   └── cluster-config-aoa.yaml
-├── infra
+│   └── wave-1-aoa.yaml
+├── wave-2
 │   ├── active
 │   │   ├── agent-cert.yaml
 │   │   ├── clusterissuer.yaml
@@ -49,8 +50,8 @@ environment
 │   │   ├── gloo-mesh-ee-helm-disableca.yaml
 │   │   ├── issuer.yaml
 │   │   └── relay-tls-signing-cert.yaml
-│   └── infra-aoa.yaml
-└── mesh-config
+│   └── wave-2-aoa.yaml
+└── wave-3
     ├── active
     │   ├── catchall-workspace.yaml
     │   ├── catchall-workspacesettings.yaml
@@ -61,9 +62,8 @@ environment
     │   ├── gloo-mesh-global-workspacesettings.yaml
     │   ├── httpbin-rt-443-vd.yaml
     │   ├── httpbin-rt-80.yaml
-    │   ├── httpbin-virtualdestination.yaml
-    │   └── roottrustpolicy.yaml
-    ├── mesh-config-aoa.yaml
+    │   └── httpbin-virtualdestination.yaml
+    └── wave-3-aoa.yaml
 ```
 
 # forking this repo
