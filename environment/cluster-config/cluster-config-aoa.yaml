@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: meta-mgmt-infra
+  name: meta-mgmt-cluster-config
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -9,8 +9,8 @@ spec:
   project: default
   source:
     repoURL: https://github.com/ably77/aoa-mgmt/
-    targetRevision: HEAD
-    path: environments/mgmt/infra/active/
+    targetRevision: refactor
+    path: environment/cluster-config/active/
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:
