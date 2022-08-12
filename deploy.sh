@@ -32,7 +32,7 @@ for i in $(echo ${environment_overlays} | sed "s/,/ /g"); do
 done
 
 # wait for completion of gloo-mesh install
-./tools/wait-for-rollout.sh deployment gloo-mesh-mgmt-server gloo-mesh 10 ${mgmt_context}
+./tools/wait-for-rollout.sh deployment gloo-mesh-mgmt-server gloo-mesh 10 ${cluster_context}
 
 # echo port-forward commands
 echo
