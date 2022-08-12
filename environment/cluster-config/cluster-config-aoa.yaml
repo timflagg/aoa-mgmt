@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/ably77/aoa-mgmt/
     targetRevision: refactor
-    path: environments/mgmt/cluster-config/active/
+    path: environment/cluster-config/active/
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:

@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/ably77/aoa-mgmt/
     targetRevision: refactor
-    path: environments/mgmt/mesh-config/active/
+    path: environment/mesh-config/active/
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:

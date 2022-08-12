@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/ably77/aoa-mgmt/
     targetRevision: refactor
-    path: environments/mgmt/infra/active/
+    path: environment/infra/active/
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:
