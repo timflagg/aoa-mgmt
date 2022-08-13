@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/ably77/aoa-mgmt/
-    targetRevision: 2.1.x-waves
+    targetRevision: HEAD
     path: environment/wave-3/active/
   destination:
     server: https://kubernetes.default.svc
