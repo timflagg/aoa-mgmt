@@ -9,7 +9,7 @@
 cluster_context="mgmt"
 # number of app waves in the environments directory
 environment_waves="3"
-LICENSE_KEY="$1"
+LICENSE_KEY="$1:-$LICENSE_KEY"
 
 # check to see if defined contexts exist
 if [[ $(kubectl config get-contexts | grep ${cluster_context}) == "" ]] ; then
