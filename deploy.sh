@@ -17,6 +17,9 @@ if [[ $(kubectl config get-contexts | grep ${cluster_context}) == "" ]] ; then
   exit 1;
 fi
 
+# create license
+./tools/create-license.sh ${cluster_context}
+
 # install argocd
 cd bootstrap-argocd
 ./install-argocd.sh insecure-rootpath ${cluster_context}
