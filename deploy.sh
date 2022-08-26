@@ -9,7 +9,6 @@
 cluster_context="mgmt"
 # number of app waves in the environments directory
 environment_waves="3"
-LICENSE_KEY="${1:-$LICENSE_KEY}"
 
 # check to see if defined contexts exist
 if [[ $(kubectl config get-contexts | grep ${cluster_context}) == "" ]] ; then
@@ -19,7 +18,7 @@ if [[ $(kubectl config get-contexts | grep ${cluster_context}) == "" ]] ; then
 fi
 
 # create license
-./tools/create-license.sh ${LICENSE_KEY} ${cluster_context}
+./tools/create-license.sh
 
 # install argocd
 cd bootstrap-argocd
