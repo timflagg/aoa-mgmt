@@ -1,4 +1,4 @@
 #!/bin/bash
 
-echo "nothing in init script yet"
+echo "starting wave-2"
 

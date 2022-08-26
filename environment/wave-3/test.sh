@@ -1,12 +1,6 @@
 #!/bin/bash
 
-cluster_context="mgmt"
-
-#sleep 20
-
-# wait for completion of gloo-mesh install
-# path is relative to the deploy script
-./tools/wait-for-rollout.sh deployment gloo-mesh-mgmt-server gloo-mesh 10 ${cluster_context}
+cluster_context=$(kubectl config current-context)
 
 # echo port-forward commands
 echo
