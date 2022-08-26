@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cluster_context=$(kubectl config current-context)
+cluster_context="mgmt"
 
 # echo port-forward commands
 echo
