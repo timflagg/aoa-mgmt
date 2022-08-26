@@ -1,6 +1,6 @@
 # gloo-mesh-demo-aoa
 
-## version 2.1.0-beta18
+## version 2.1.0-beta23
 This repo provides a multitenant capable GitOps workflow structure that can be forked and used to demonstrate the deployment and configuration of a multi-cluster mesh demo as code using the Argo CD app-of-apps pattern.
 
 This repo is meant to be deployed along with the following repos to create the entire High Level Architecture diagram below.
@@ -20,7 +20,7 @@ This repo is meant to be deployed along with the following repos to create the e
 # Getting Started
 Run:
 ```
-./deploy.sh $LICENSE_KEY        # deploys on mgmt cluster
+./deploy.sh $LICENSE_KEY $cluster_context        # deploys on mgmt cluster by default if no input
 ```
 The script will prompt you for a Gloo Mesh Enterprise license key if not provided as an input parameter
 
@@ -37,12 +37,19 @@ environment
 │   ├── active
 │   │   ├── cert-manager-cacerts.yaml
 │   │   ├── cert-manager-ns.yaml
-│   │   ├── cert-manager.yaml
 │   │   ├── gloo-mesh-ns.yaml
 │   │   ├── relay-identity-token-secret.yaml
 │   │   └── relay-root-ca.yaml
+│   ├── init.sh
+│   ├── test.sh
 │   └── wave-1-aoa.yaml
 ├── wave-2
+│   ├── active
+│   │   └── cert-manager.yaml
+│   ├── init.sh
+│   ├── test.sh
+│   └── wave-2-aoa.yaml
+├── wave-3
 │   ├── active
 │   │   ├── agent-cert.yaml
 │   │   ├── clusterissuer.yaml
@@ -50,8 +57,10 @@ environment
 │   │   ├── gloo-mesh-ee-helm-disableca.yaml
 │   │   ├── issuer.yaml
 │   │   └── relay-tls-signing-cert.yaml
-│   └── wave-2-aoa.yaml
-└── wave-3
+│   ├── init.sh
+│   ├── test.sh
+│   └── wave-3-aoa.yaml
+└── wave-4
     ├── active
     │   ├── catchall-workspace.yaml
     │   ├── catchall-workspacesettings.yaml
@@ -63,7 +72,9 @@ environment
     │   ├── httpbin-rt-443-vd.yaml
     │   ├── httpbin-rt-80.yaml
     │   └── httpbin-virtualdestination.yaml
-    └── wave-3-aoa.yaml
+    ├── init.sh
+    ├── test.sh
+    └── wave-4-aoa.yaml
 ```
 
 # forking this repo
