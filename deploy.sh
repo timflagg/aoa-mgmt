@@ -8,8 +8,6 @@
 # rename your context if necessary
 LICENSE_KEY=${1:-""}
 cluster_context=${2:-mgmt}
-# number of app waves in the environments directory
-environment_waves="3"
 
 # check to see if defined contexts exist
 if [[ $(kubectl config get-contexts | grep ${cluster_context}) == "" ]] ; then
@@ -30,7 +28,7 @@ cd ..
 ./tools/wait-for-rollout.sh deployment argocd-server argocd 20 ${cluster_context}
 
 # deploy app of app waves
-for i in $(seq ${environment_waves}); do 
+for i in $(seq $(ls environment | wc -l)); do 
   # run init script if it exists
   [[ -f "environment/wave-${i}/init.sh" ]] && ./environment/wave-${i}/init.sh
   # deploy aoa wave
