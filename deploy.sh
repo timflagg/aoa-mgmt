@@ -7,6 +7,7 @@
 # please use `kubectl config rename-contexts <current_context> <target_context>` to
 # rename your context if necessary
 cluster_context="mgmt"
+LICENSE_KEY=${1:-""}
 # number of app waves in the environments directory
 environment_waves="3"
 
@@ -18,7 +19,7 @@ if [[ $(kubectl config get-contexts | grep ${cluster_context}) == "" ]] ; then
 fi
 
 # create license
-./tools/create-license.sh
+./tools/create-license.sh ${LICENSE_KEY}
 
 # install argocd
 cd bootstrap-argocd

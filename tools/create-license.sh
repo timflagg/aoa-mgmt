@@ -6,8 +6,8 @@
 #
 # please use `kubectl config rename-contexts <current_context> <target_context>` to
 # rename your context if necessary
-LICENSE_KEY="$1"
-cluster_context="mgmt"
+LICENSE_KEY=${1:-""}
+cluster_context=${2:-mgmt}
 
 # check to see if license key variable was passed through, if not prompt for key
 if [[ ${LICENSE_KEY} == "" ]]
