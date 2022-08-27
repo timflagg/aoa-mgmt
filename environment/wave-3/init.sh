@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo "starting wave-3"
-echo "wave-3 description:"
+echo "wave description:"
 echo "gloo-mesh"
 
