@@ -8,3 +8,6 @@ resources:
 - argocd-cluster1-rt-80.yaml
 - gloo-mesh-cluster1-virtualgateway-80.yaml
 - gloo-mesh-cluster1-virtualgateway-443.yaml
+- argocd-cluster2-rt-80.yaml
+- gloo-mesh-cluster2-virtualgateway-80.yaml
+- gloo-mesh-cluster2-virtualgateway-443.yaml
