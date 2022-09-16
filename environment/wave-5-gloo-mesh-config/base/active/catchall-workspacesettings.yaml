@@ -19,3 +19,6 @@ spec:
       - workspace: wildcard
         labels: 
           app: in-mesh
+      - workspace: wildcard
+        labels: 
+          app: reviews
