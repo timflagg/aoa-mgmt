@@ -6,10 +6,9 @@ kind: Kustomization
 resources:
 - ../../base/active/
 - bookinfo-workspace.yaml
+- - bookinfo-workspacesettings.yaml
 #- certmanager-istio-ca-cert.yaml
 #- certmanager-selfsigned-issuer.yaml
-- gateways-workspace-settings.yaml
-- gloo-mesh-gateways-workspace.yaml
 - httpbin-workspace.yaml
 - roottrustpolicy-generated.yaml
 #- roottrustpolicy-secretref.yaml

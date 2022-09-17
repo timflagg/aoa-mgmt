@@ -5,6 +5,11 @@ metadata:
   namespace: gloo-mesh
 spec:
   workloadClusters:
+  - name: mgmt
+    namespaces:
+    - name: istio-gateways
+    # uncomment if gloo-mesh-addons are deployed
+    - name: gloo-mesh-addons
   - name: cluster1
     namespaces:
     - name: istio-gateways

@@ -1,21 +1,20 @@
 apiVersion: admin.gloo.solo.io/v2
 kind: Workspace
 metadata:
-  name: bookinfo
-  namespace: gloo-mesh
   labels:
     allow_ingress: "true"
+  name: admin-workspace
+  namespace: gloo-mesh
 spec:
   workloadClusters:
   - name: mgmt
     namespaces:
-    - name: bookinfo-frontends
-    - name: bookinfo-backends
+    - name: argocd
+    - name: gloo-mesh
+    - name: istio-system
   - name: cluster1
     namespaces:
-    - name: bookinfo-frontends
-    - name: bookinfo-backends
+    - name: argocd
   - name: cluster2
     namespaces:
-    - name: bookinfo-frontends
-    - name: bookinfo-backends
+    - name: argocd
