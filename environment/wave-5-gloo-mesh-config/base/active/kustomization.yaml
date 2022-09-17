@@ -5,8 +5,6 @@ kind: Kustomization
 # list of resources to be Applied
 resources:
 - argocd-mgmt-rt-80.yaml
-- catchall-workspace.yaml
-- catchall-workspacesettings.yaml
 - gloo-mesh-global-workspacesettings.yaml
 - gloo-mesh-mgmt-kubernetescluster.yaml
 - gloo-mesh-mgmt-virtualgateway-443.yaml

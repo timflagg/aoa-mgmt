@@ -5,7 +5,14 @@ kind: Kustomization
 # list of resources to be Applied
 resources:
 - ../../base/active/
-- certmanager-istio-ca-cert.yaml
-- certmanager-selfsigned-issuer.yaml
-- roottrustpolicy-secretref.yaml
+- bookinfo-workspace.yaml
+#- certmanager-istio-ca-cert.yaml
+#- certmanager-selfsigned-issuer.yaml
+- gloo-mesh-gateways-workspace.yaml
+- httpbin-workspace.yaml
+- roottrustpolicy-generated.yaml
+#- roottrustpolicy-secretref.yaml
 - rr-productpage.yaml
+
+patchesStrategicMerge:
+- patches/kubernetescluster.yaml

@@ -11,9 +11,9 @@ spec:
   commonName: istio-ca
   subject:
     organizations:
-    - gloo-mesh
-    #- cluster.local
-    #- cert-manager
+    - cluster.local
+    - istio
+    - cert-manager
   issuerRef:
     name: selfsigned
     kind: Issuer

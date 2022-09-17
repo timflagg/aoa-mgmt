@@ -29,34 +29,34 @@
 #    interval: 5s
 #    maxEjectionPercent: 100
 #---
-#apiVersion: networking.gloo.solo.io/v2
-#kind: RouteTable
-#metadata:
-#  name: reviews
-#  namespace: bookinfo-backends
-#spec:
-#  hosts:
-#  - reviews.bookinfo-backends.svc.cluster.local
-#  http:
-#  - forwardTo:
-#      destinations:
-#      - port:
-#          number: 9080
-#        ref:
-#          cluster: cluster2
-#          name: reviews
-#          namespace: bookinfo-backends
-#        subset:
-#          version: v3
-#    matchers:
-#    - uri:
-#        prefix: /
-#    name: reviews
-#  workloadSelectors:
-#  - selector:
-#      labels:
-#        app: productpage
-#---
+apiVersion: networking.gloo.solo.io/v2
+kind: RouteTable
+metadata:
+  name: reviews
+  namespace: bookinfo-backends
+spec:
+  hosts:
+  - reviews.bookinfo-backends.svc.cluster.local
+  http:
+  - forwardTo:
+      destinations:
+      - port:
+          number: 9080
+        ref:
+          cluster: cluster2
+          name: reviews
+          namespace: bookinfo-backends
+        subset:
+          version: v3
+    matchers:
+    - uri:
+        prefix: /
+    name: reviews
+  workloadSelectors:
+  - selector:
+      labels:
+        app: productpage
+---
 apiVersion: networking.gloo.solo.io/v2
 kind: RouteTable
 metadata:
