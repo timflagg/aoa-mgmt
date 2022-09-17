@@ -5,7 +5,7 @@ metadata:
   namespace: gloo-mesh
 spec:
   isCA: true
-  duration: 2160h # 90d
+  duration: 2160h0m0s # 90d
   #secretName: istio-ca
   secretName: dummy-signing-cert
   commonName: istio-ca
