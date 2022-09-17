@@ -8,6 +8,7 @@ resources:
 - bookinfo-workspace.yaml
 #- certmanager-istio-ca-cert.yaml
 #- certmanager-selfsigned-issuer.yaml
+- gateways-workspace-settings.yaml
 - gloo-mesh-gateways-workspace.yaml
 - httpbin-workspace.yaml
 - roottrustpolicy-generated.yaml
