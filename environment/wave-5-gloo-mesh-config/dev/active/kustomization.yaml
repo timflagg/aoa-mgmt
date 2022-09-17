@@ -6,7 +6,7 @@ kind: Kustomization
 resources:
 - ../../base/active/
 - bookinfo-workspace.yaml
-- - bookinfo-workspacesettings.yaml
+- bookinfo-workspacesettings.yaml
 #- certmanager-istio-ca-cert.yaml
 #- certmanager-selfsigned-issuer.yaml
 - httpbin-workspace.yaml
