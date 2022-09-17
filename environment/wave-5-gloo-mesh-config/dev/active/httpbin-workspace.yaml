@@ -7,6 +7,9 @@ metadata:
     allow_ingress: "true"
 spec:
   workloadClusters:
+  - name: mgmt
+    namespaces:
+    - name: httpbin
   - name: cluster1
     namespaces:
     - name: httpbin
