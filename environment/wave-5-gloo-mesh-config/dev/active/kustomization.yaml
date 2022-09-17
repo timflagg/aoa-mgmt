@@ -9,6 +9,4 @@ resources:
 - bookinfo-workspacesettings.yaml
 - httpbin-workspace.yaml
 - httpbin-workspacesettings.yaml
-#- roottrustpolicy-generated.yaml
-- roottrustpolicy-secretref.yaml
 - rr-productpage.yaml
