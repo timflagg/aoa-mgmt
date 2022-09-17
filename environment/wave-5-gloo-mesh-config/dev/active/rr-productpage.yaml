@@ -128,10 +128,13 @@ spec:
       secretName: tls-secret
   workloads:
   - selector:
-      cluster: cluster1
       labels:
         istio: ingressgateway
-  - selector:
-      cluster: cluster2
-      labels:
-        istio: ingressgateway
+  #- selector:
+  #    cluster: cluster1
+  #    labels:
+  #      istio: ingressgateway
+  #- selector:
+  #    cluster: cluster2
+  #    labels:
+  #      istio: ingressgateway

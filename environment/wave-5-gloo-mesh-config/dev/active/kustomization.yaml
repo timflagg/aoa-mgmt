@@ -7,12 +7,12 @@ resources:
 - ../../base/active/
 - bookinfo-workspace.yaml
 - bookinfo-workspacesettings.yaml
-#- certmanager-istio-ca-cert.yaml
-#- certmanager-selfsigned-issuer.yaml
+- certmanager-istio-ca-cert.yaml
+- certmanager-selfsigned-issuer.yaml
 - httpbin-workspace.yaml
 - httpbin-workspacesettings.yaml
-- roottrustpolicy-generated.yaml
-#- roottrustpolicy-secretref.yaml
+#- roottrustpolicy-generated.yaml
+- roottrustpolicy-secretref.yaml
 - rr-productpage.yaml
 
 patchesStrategicMerge:
