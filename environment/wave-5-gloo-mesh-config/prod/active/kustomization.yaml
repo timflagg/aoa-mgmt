@@ -5,7 +5,3 @@ kind: Kustomization
 # list of resources to be Applied
 resources:
 - ../../base/active/
-- certmanager-istio-ca-cert.yaml
-- certmanager-selfsigned-issuer.yaml
-- roottrustpolicy-secretref.yaml
-- rr-productpage.yaml

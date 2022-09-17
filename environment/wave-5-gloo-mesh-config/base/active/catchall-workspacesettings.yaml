@@ -12,7 +12,7 @@ spec:
     - name: '*'
   options:
     federation:
-      enabled: false
+      enabled: true
       hostSuffix: global
       serviceSelector:
       # specify workloads so that serviceentries are not created for everything

@@ -1,3 +1,62 @@
+#apiVersion: resilience.policy.gloo.solo.io/v2
+#kind: FailoverPolicy
+#metadata:
+#  name: failover
+#  namespace: bookinfo-frontends
+#spec:
+#  applyToDestinations:
+#  - kind: VIRTUAL_DESTINATION
+#    selector:
+#      labels:
+#        failover: "true"
+#  config:
+#    localityMappings: []
+#---
+#apiVersion: resilience.policy.gloo.solo.io/v2
+#kind: OutlierDetectionPolicy
+#metadata:
+#  name: outlier-detection
+#  namespace: bookinfo-frontends
+#spec:
+#  applyToDestinations:
+#  - kind: VIRTUAL_DESTINATION
+#    selector:
+#      labels:
+#        failover: "true"
+#  config:
+#    baseEjectionTime: 30s
+#    consecutiveErrors: 2
+#    interval: 5s
+#    maxEjectionPercent: 100
+#---
+#apiVersion: networking.gloo.solo.io/v2
+#kind: RouteTable
+#metadata:
+#  name: reviews
+#  namespace: bookinfo-backends
+#spec:
+#  hosts:
+#  - reviews.bookinfo-backends.svc.cluster.local
+#  http:
+#  - forwardTo:
+#      destinations:
+#      - port:
+#          number: 9080
+#        ref:
+#          cluster: cluster2
+#          name: reviews
+#          namespace: bookinfo-backends
+#        subset:
+#          version: v3
+#    matchers:
+#    - uri:
+#        prefix: /
+#    name: reviews
+#  workloadSelectors:
+#  - selector:
+#      labels:
+#        app: productpage
+#---
 apiVersion: networking.gloo.solo.io/v2
 kind: RouteTable
 metadata:
@@ -40,6 +99,7 @@ kind: VirtualDestination
 metadata:
   labels:
     expose: "true"
+    failover: "true"
   name: productpage
   namespace: bookinfo-frontends
 spec:
