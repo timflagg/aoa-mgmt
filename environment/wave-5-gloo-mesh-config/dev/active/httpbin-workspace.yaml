@@ -13,3 +13,6 @@ spec:
   - name: cluster1
     namespaces:
     - name: httpbin
+  - name: cluster2
+    namespaces:
+    - name: httpbin
