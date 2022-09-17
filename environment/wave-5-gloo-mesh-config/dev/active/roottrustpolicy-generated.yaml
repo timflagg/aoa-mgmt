@@ -7,7 +7,8 @@ spec:
   applyToMeshes:
     istio:
       clusterSelector:
-      - roottrust: shared
+      - key: roottrust
+        value: shared
   config:
     autoRestartPods: true
     mgmtServerCa:
