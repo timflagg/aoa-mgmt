@@ -24,4 +24,10 @@ spec:
           app: reviews
       - workspace: wildcard
         labels: 
+          app: ratings
+      - workspace: wildcard
+        labels: 
+          app: details
+      - workspace: wildcard
+        labels: 
           app: productpage
