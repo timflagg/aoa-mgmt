@@ -5,10 +5,9 @@ metadata:
   namespace: gloo-mesh
 spec:
   applyToMeshes:
-    istio:
+  - istio:
       clusterSelector:
-      - key: roottrust
-        value: shared
+        roottrust: shared
   config:
     autoRestartPods: true
     mgmtServerCa:
