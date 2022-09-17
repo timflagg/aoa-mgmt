@@ -22,3 +22,6 @@ spec:
       - workspace: wildcard
         labels: 
           app: reviews
+      - workspace: wildcard
+        labels: 
+          app: productpage

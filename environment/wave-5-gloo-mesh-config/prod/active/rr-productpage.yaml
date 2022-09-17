@@ -1,0 +1,77 @@
+apiVersion: networking.gloo.solo.io/v2
+kind: RouteTable
+metadata:
+  labels:
+    expose: "true"
+  name: productpage
+  namespace: bookinfo-frontends
+spec:
+  hosts:
+  - 'bookinfo-local.glootest.com'
+  http:
+  - forwardTo:
+      destinations:
+      - kind: VIRTUAL_DESTINATION
+        port:
+          number: 9080
+        ref:
+          name: productpage
+          namespace: bookinfo-frontends
+    matchers:
+    - uri:
+        exact: /productpage
+    - uri:
+        prefix: /static
+    - uri:
+        exact: /login
+    - uri:
+        exact: /logout
+    - uri:
+        prefix: /api/v1/products
+    name: productpage
+  virtualGateways:
+  - name: north-south-gw
+    namespace: istio-gateways
+    cluster: mgmt
+  workloadSelectors: []
+---
+apiVersion: networking.gloo.solo.io/v2
+kind: VirtualDestination
+metadata:
+  labels:
+    expose: "true"
+  name: productpage
+  namespace: bookinfo-frontends
+spec:
+  hosts:
+  - productpage.global
+  ports:
+  - number: 9080
+    protocol: HTTP
+  services:
+  - labels:
+      app: productpage
+    namespace: bookinfo-frontends
+---
+apiVersion: networking.gloo.solo.io/v2
+kind: VirtualGateway
+metadata:
+  name: north-south-gw
+  namespace: istio-gateways
+spec:
+  listeners:
+  - http: {}
+    port:
+      number: 443
+    tls:
+      mode: SIMPLE
+      secretName: tls-secret
+  workloads:
+  - selector:
+      cluster: cluster1
+      labels:
+        istio: ingressgateway
+  - selector:
+      cluster: cluster2
+      labels:
+        istio: ingressgateway
