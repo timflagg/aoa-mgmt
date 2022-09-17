@@ -7,8 +7,8 @@
 # please use `kubectl config rename-contexts <current_context> <target_context>` to
 # rename your context if necessary
 LICENSE_KEY=${1:-""}
-cluster_context=${2:-mgmt}
-environment_overlay=${3:-prod} # prod, qa, dev, base
+environment_overlay=${2:-""} # prod, qa, dev, base
+cluster_context=${3:-mgmt}
 github_username=${4:-ably77}
 repo_name=${5:-aoa-mgmt}
 target_branch=${6:-HEAD}
@@ -22,6 +22,14 @@ fi
 
 # create license
 ./tools/create-license.sh "${LICENSE_KEY}" "${cluster_context}"
+
+# check to see if environment overlay variable was passed through, if not prompt for it
+if [[ ${environment_overlay} == "" ]]
+  then
+    # provide environment overlay
+    echo "Please provide the environment overlay to use (i.e. prod, dev, qa):"
+    read environment_overlay
+fi
 
 # install argocd
 cd bootstrap-argocd

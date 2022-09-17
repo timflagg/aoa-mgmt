@@ -25,7 +25,7 @@ This repo provides a multitenant capable GitOps workflow structure that can be f
 # Getting Started
 Run:
 ```
-./deploy.sh $LICENSE_KEY $cluster_context        # deploys on mgmt cluster by default if no input
+./deploy.sh $LICENSE_KEY $environment_overlay $cluster_context        # deploys on mgmt cluster by default if no input
 ```
 The script will prompt you for a Gloo Mesh Enterprise license key if not provided as an input parameter
 
