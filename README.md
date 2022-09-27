@@ -20,7 +20,10 @@ This repo provides a multitenant capable GitOps workflow structure that can be f
     - This demo has been tested on 1x `n2-standard-4` (gke), `m5.xlarge` (aws), or `Standard_DS3_v2` (azure) instance for `mgmt` cluster
 
 # High Level Architecture
-![High Level Architecture](images/aoa-1a.png)
+![High Level Architecture](images/aoa-full-1a.png)
+
+# What this repo deploys
+![cluster1 components](images/aoa-mgmt-1a.png)
 
 # Getting Started
 Run:
@@ -44,7 +47,6 @@ environment
 │   │       ├── argocd-ns.yaml
 │   │       ├── bookinfo-backends-ns.yaml
 │   │       ├── bookinfo-frontends-ns.yaml
-│   │       ├── cert-manager-cacerts.yaml
 │   │       ├── cert-manager-ns.yaml
 │   │       ├── gloo-mesh-addons-ns.yaml
 │   │       ├── gloo-mesh-ns.yaml
@@ -68,6 +70,7 @@ environment
 ├── wave-2-certmanager
 │   ├── base
 │   │   └── active
+│   │       ├── cert-manager-cacerts.yaml
 │   │       ├── cert-manager.yaml
 │   │       └── kustomization.yaml
 │   ├── dev
@@ -84,6 +87,8 @@ environment
 ├── wave-3-istio
 │   ├── base
 │   │   └── active
+│   │       ├── certmanager-istio-ca-cert.yaml
+│   │       ├── certmanager-selfsigned-issuer.yaml
 │   │       ├── gateway-cert.yaml
 │   │       ├── grafana.yaml
 │   │       ├── istio-base.yaml
@@ -96,10 +101,10 @@ environment
 │   │   └── active
 │   │       ├── kustomization.yaml
 │   │       └── patches
-│   │           ├── grafana-1.14.3.yaml
-│   │           ├── istio-base-1.14.3.yaml
-│   │           ├── istio-ingressgateway-1.14.3.yaml
-│   │           └── istiod-1.14.3.yaml
+│   │           ├── grafana-1-15.yaml
+│   │           ├── istio-base-1.15.0.yaml
+│   │           ├── istio-ingressgateway-1.15.0.yaml
+│   │           └── istiod-1.15.0.yaml
 │   ├── init.sh
 │   ├── prod
 │   │   └── active
@@ -128,24 +133,14 @@ environment
 │   │       └── kustomization.yaml
 │   ├── dev
 │   │   └── active
-│   │       ├── kustomization.yaml
-│   │       └── patches
-│   │           ├── gloo-mesh-addons.yaml
-│   │           ├── gloo-mesh-agent.yaml
-│   │           ├── gloo-mesh-crds.yaml
-│   │           └── gloo-mesh-ee-helm-disableca.yaml
+│   │       └── kustomization.yaml
 │   ├── init.sh
 │   ├── prod
 │   │   └── active
 │   │       └── kustomization.yaml
 │   ├── qa
 │   │   └── active
-│   │       ├── kustomization.yaml
-│   │       └── patches
-│   │           ├── gloo-mesh-addons.yaml
-│   │           ├── gloo-mesh-agent.yaml
-│   │           ├── gloo-mesh-crds.yaml
-│   │           └── gloo-mesh-ee-helm-disableca.yaml
+│   │       └── kustomization.yaml
 │   └── test.sh
 └── wave-5-gloo-mesh-config
     ├── base
@@ -153,24 +148,40 @@ environment
     │       ├── argocd-mgmt-rt-80.yaml
     │       ├── gloo-mesh-admin-workspace.yaml
     │       ├── gloo-mesh-admin-workspacesettings.yaml
+    │       ├── gloo-mesh-gateways-workspace-settings.yaml
     │       ├── gloo-mesh-gateways-workspace.yaml
-    │       ├── gloo-mesh-gateways-workspacesettings.yaml
     │       ├── gloo-mesh-global-workspacesettings.yaml
     │       ├── gloo-mesh-mgmt-kubernetescluster.yaml
     │       ├── gloo-mesh-mgmt-virtualgateway-443.yaml
     │       ├── gloo-mesh-mgmt-virtualgateway-80.yaml
     │       ├── gloo-mesh-ui-rt-443.yaml
     │       ├── grafana-rt-443.yaml
-    │       └── kustomization.yaml
+    │       ├── kustomization.yaml
+    │       ├── roottrustpolicy-generated.yaml
+    │       └── roottrustpolicy-secretref.yaml
     ├── dev
-    │   └── active
-    │       └── kustomization.yaml
+    │   ├── active
+    │   │   ├── bookinfo-workspace.yaml
+    │   │   ├── bookinfo-workspacesettings.yaml
+    │   │   ├── httpbin-workspace.yaml
+    │   │   ├── httpbin-workspacesettings.yaml
+    │   │   ├── kustomization.yaml
+    │   │   └── rr-productpage.yaml
+    │   └── non-active
+    │       ├── catchall-workspace.yaml
+    │       └── catchall-workspacesettings.yaml
     ├── init.sh
     ├── prod
     │   └── active
     │       └── kustomization.yaml
     ├── qa
     │   └── active
+    │       ├── argocd-cluster1-rt-80.yaml
+    │       ├── argocd-cluster2-rt-80.yaml
+    │       ├── gloo-mesh-cluster1-virtualgateway-443.yaml
+    │       ├── gloo-mesh-cluster1-virtualgateway-80.yaml
+    │       ├── gloo-mesh-cluster2-virtualgateway-443.yaml
+    │       ├── gloo-mesh-cluster2-virtualgateway-80.yaml
     │       └── kustomization.yaml
     └── test.sh
 ```
