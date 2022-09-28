@@ -9,7 +9,7 @@
 LICENSE_KEY=${1:-""}
 environment_overlay=${2:-""} # prod, qa, dev, base
 cluster_context=${3:-mgmt}
-github_username=${4:-ably77}
+github_username=${4:-asayah}
 repo_name=${5:-aoa-mgmt}
 target_branch=${6:-HEAD}
 
