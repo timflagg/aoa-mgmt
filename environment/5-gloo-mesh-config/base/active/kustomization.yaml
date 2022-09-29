@@ -12,7 +12,6 @@ resources:
 - gloo-mesh-global-workspacesettings.yaml
 - gloo-mesh-mgmt-kubernetescluster.yaml
 - gloo-mesh-mgmt-virtualgateway-443.yaml
-- gloo-mesh-mgmt-virtualgateway-80.yaml
 - gloo-mesh-ui-rt-443.yaml
 - grafana-rt-443.yaml
 #- roottrustpolicy-generated.yaml
