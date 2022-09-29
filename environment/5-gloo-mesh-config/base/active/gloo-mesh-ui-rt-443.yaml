@@ -47,7 +47,7 @@ spec:
     - uri:
         prefix: /oidc-callback
     - uri:
-        prefix: /
+        exact: /
     forwardTo:
       destinations:
       - ref:
