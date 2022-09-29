@@ -4,7 +4,7 @@ kind: Kustomization
 
 # list of resources to be Applied
 resources:
-- argocd-mgmt-rt-80.yaml
+- argocd-mgmt-rt-443.yaml
 - gloo-mesh-admin-workspace.yaml
 - gloo-mesh-admin-workspacesettings.yaml
 - gloo-mesh-gateways-workspace-settings.yaml
