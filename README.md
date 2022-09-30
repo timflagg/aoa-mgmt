@@ -28,173 +28,31 @@ This repo provides a multitenant capable GitOps workflow structure that can be f
 # Getting Started
 Run:
 ```
-./deploy.sh $LICENSE_KEY $environment_overlay $cluster_context        # deploys on mgmt cluster by default if no input
+./deploy.sh $LICENSE_KEY $environment_overlay $cluster_context       # deploys on mgmt cluster by default if no input
 ```
-The script will prompt you for a Gloo Mesh Enterprise license key if not provided as an input parameter
+The script will prompt you for input if not provided
 
-Note:
-- By default, the script will deploy into a cluster context named `mgmt`if not passed in
-- Context parameters can be changed from defaults by passing in variables in the `deploy.sh` A check is done to ensure that the defined contexts exist before proceeding with the installation. Note that the character `_` is an invalid value if you are replacing default contexts
-- Although you may change the contexts where apps are deployed as describe above, the Gloo Mesh and Istio cluster names will remain stable references (i.e. `mgmt`, `cluster1`, and `cluster2`)
-
-# App of Apps Explained
-The app-of-apps pattern uses a generic Argo Application to sync all manifests in a particular Git directory, rather than directly point to a Kustomize, YAML, or Helm configuration. Anything pushed into the `environment/<overlay>/active` directory is deployed by it's corresponding app-of-app
+## Variables
+You can configure parameters used by the script in the `vars.txt`. This is particularily useful if you want to test an alternate repo branch or if you fork this repo.
 ```
-environment
-├── wave-1-clusterconfig
-│   ├── base
-│   │   └── active
-│   │       ├── argocd-ns.yaml
-│   │       ├── bookinfo-backends-ns.yaml
-│   │       ├── bookinfo-frontends-ns.yaml
-│   │       ├── cert-manager-ns.yaml
-│   │       ├── gloo-mesh-addons-ns.yaml
-│   │       ├── gloo-mesh-ns.yaml
-│   │       ├── gloo-mesh-relay-identity-token-secret.yaml
-│   │       ├── gloo-mesh-relay-root-ca.yaml
-│   │       ├── httpbin-ns.yaml
-│   │       ├── istio-gateways-ns.yaml
-│   │       ├── istio-system-ns.yaml
-│   │       └── kustomization.yaml
-│   ├── dev
-│   │   └── active
-│   │       └── kustomization.yaml
-│   ├── init.sh
-│   ├── prod
-│   │   └── active
-│   │       └── kustomization.yaml
-│   ├── qa
-│   │   └── active
-│   │       └── kustomization.yaml
-│   └── test.sh
-├── wave-2-certmanager
-│   ├── base
-│   │   └── active
-│   │       ├── cert-manager-cacerts.yaml
-│   │       ├── cert-manager.yaml
-│   │       └── kustomization.yaml
-│   ├── dev
-│   │   └── active
-│   │       └── kustomization.yaml
-│   ├── init.sh
-│   ├── prod
-│   │   └── active
-│   │       └── kustomization.yaml
-│   ├── qa
-│   │   └── active
-│   │       └── kustomization.yaml
-│   └── test.sh
-├── wave-3-istio
-│   ├── base
-│   │   └── active
-│   │       ├── certmanager-istio-ca-cert.yaml
-│   │       ├── certmanager-selfsigned-issuer.yaml
-│   │       ├── gateway-cert.yaml
-│   │       ├── grafana.yaml
-│   │       ├── istio-base.yaml
-│   │       ├── istio-ingressgateway.yaml
-│   │       ├── istiod.yaml
-│   │       ├── kiali.yaml
-│   │       ├── kustomization.yaml
-│   │       └── prometheus.yaml
-│   ├── dev
-│   │   └── active
-│   │       ├── kustomization.yaml
-│   │       └── patches
-│   │           ├── grafana-1-15.yaml
-│   │           ├── istio-base-1.15.0.yaml
-│   │           ├── istio-ingressgateway-1.15.0.yaml
-│   │           └── istiod-1.15.0.yaml
-│   ├── init.sh
-│   ├── prod
-│   │   └── active
-│   │       └── kustomization.yaml
-│   ├── qa
-│   │   └── active
-│   │       ├── kustomization.yaml
-│   │       └── patches
-│   │           ├── grafana-1.14.3.yaml
-│   │           ├── istio-base-1.14.3.yaml
-│   │           ├── istio-ingressgateway-1.14.3.yaml
-│   │           └── istiod-1.14.3.yaml
-│   └── test.sh
-├── wave-4-gloo-mesh
-│   ├── base
-│   │   └── active
-│   │       ├── cert-manager-clusterissuer.yaml
-│   │       ├── cert-manager-issuer.yaml
-│   │       ├── gloo-mesh-addons.yaml
-│   │       ├── gloo-mesh-agent-cert.yaml
-│   │       ├── gloo-mesh-agent.yaml
-│   │       ├── gloo-mesh-cert.yaml
-│   │       ├── gloo-mesh-crds.yaml
-│   │       ├── gloo-mesh-ee-helm-disableca.yaml
-│   │       ├── gloo-mesh-relay-tls-signing-cert.yaml
-│   │       └── kustomization.yaml
-│   ├── dev
-│   │   └── active
-│   │       └── kustomization.yaml
-│   ├── init.sh
-│   ├── prod
-│   │   └── active
-│   │       └── kustomization.yaml
-│   ├── qa
-│   │   └── active
-│   │       └── kustomization.yaml
-│   └── test.sh
-└── wave-5-gloo-mesh-config
-    ├── base
-    │   └── active
-    │       ├── argocd-mgmt-rt-80.yaml
-    │       ├── gloo-mesh-admin-workspace.yaml
-    │       ├── gloo-mesh-admin-workspacesettings.yaml
-    │       ├── gloo-mesh-gateways-workspace-settings.yaml
-    │       ├── gloo-mesh-gateways-workspace.yaml
-    │       ├── gloo-mesh-global-workspacesettings.yaml
-    │       ├── gloo-mesh-mgmt-kubernetescluster.yaml
-    │       ├── gloo-mesh-mgmt-virtualgateway-443.yaml
-    │       ├── gloo-mesh-mgmt-virtualgateway-80.yaml
-    │       ├── gloo-mesh-ui-rt-443.yaml
-    │       ├── grafana-rt-443.yaml
-    │       ├── kustomization.yaml
-    │       ├── roottrustpolicy-generated.yaml
-    │       └── roottrustpolicy-secretref.yaml
-    ├── dev
-    │   ├── active
-    │   │   ├── bookinfo-workspace.yaml
-    │   │   ├── bookinfo-workspacesettings.yaml
-    │   │   ├── httpbin-workspace.yaml
-    │   │   ├── httpbin-workspacesettings.yaml
-    │   │   ├── kustomization.yaml
-    │   │   └── rr-productpage.yaml
-    │   └── non-active
-    │       ├── catchall-workspace.yaml
-    │       └── catchall-workspacesettings.yaml
-    ├── init.sh
-    ├── prod
-    │   └── active
-    │       └── kustomization.yaml
-    ├── qa
-    │   └── active
-    │       ├── argocd-cluster1-rt-80.yaml
-    │       ├── argocd-cluster2-rt-80.yaml
-    │       ├── gloo-mesh-cluster1-virtualgateway-443.yaml
-    │       ├── gloo-mesh-cluster1-virtualgateway-80.yaml
-    │       ├── gloo-mesh-cluster2-virtualgateway-443.yaml
-    │       ├── gloo-mesh-cluster2-virtualgateway-80.yaml
-    │       └── kustomization.yaml
-    └── test.sh
-```
-
-# forking this repo
-Fork this repo and modify the variables in the `tools/configure-wave.sh` script to point to your own github username, repo name, and branch
-```
-wave_name=${1:-""}
-environment_overlay=${2:-prod} # prod, qa, dev, base
+LICENSE_KEY=${1:-""}
+environment_overlay=${2:-""} # prod, qa, dev, base
 cluster_context=${3:-mgmt}
 github_username=${4:-ably77}
 repo_name=${5:-aoa-mgmt}
 target_branch=${6:-HEAD}
 ```
 
-Now you can should be able to deploy and sync the corresponding `environment` waves in your fork and push new changes to it
+Note:
+- Although you may change the contexts where apps are deployed as describe above, the Gloo Mesh and Istio cluster names will remain stable references (i.e. `mgmt`, `cluster1`, and `cluster2`)
+
+# App of Apps Explained
+The app-of-apps pattern uses a generic Argo Application to sync all manifests in a particular Git directory, rather than directly point to a Kustomize, YAML, or Helm configuration. Anything pushed into the `environment/<overlay>/active` directory is deployed by it's corresponding app-of-app
+
+If you are curious to learn more about the pattern, Christian Hernandez from CodeFresh has a solid blog describing at a high level the pattern I'm using here in this repo
+(https://codefresh.io/blog/argo-cd-application-dependencies/)
+
+# forking this repo
+Fork this repo and replace the variables in the `vars.txt` github_username, repo_name, and branch with your own
+
+From there should be able to deploy and sync the corresponding `environment` waves as is in your forked repo or push new changes to it
