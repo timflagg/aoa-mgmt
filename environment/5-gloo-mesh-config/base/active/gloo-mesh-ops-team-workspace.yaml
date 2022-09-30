@@ -1,20 +1,17 @@
 apiVersion: admin.gloo.solo.io/v2
 kind: Workspace
 metadata:
-  labels:
-    allow_ingress: "true"
-  name: admin-workspace
+  name: ops-team
   namespace: gloo-mesh
 spec:
   workloadClusters:
-  - name: mgmt
+  - name: 'mgmt'
     namespaces:
     - name: argocd
     - name: gloo-mesh
     - name: istio-system
-  - name: cluster1
+    - name: ops-team-config
+  - name: '*'
     namespaces:
-    - name: argocd
-  - name: cluster2
-    namespaces:
-    - name: argocd
+    - name: istio-gateways
+    - name: gloo-mesh-addons
