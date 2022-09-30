@@ -11,7 +11,7 @@ spec:
   virtualGateways:
     - name: cluster1-north-south-gw-443
       namespace: istio-gateways
-      cluster: mgmt
+      cluster: cluster1
   workloadSelectors: []
   http:
     - name: httpbin
