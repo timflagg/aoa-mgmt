@@ -50,6 +50,50 @@ target_branch=${6:-HEAD}
 Note:
 - Although you may change the contexts where apps are deployed as describe above, the Gloo Mesh and Istio cluster names will remain stable references (i.e. `mgmt`, `cluster1`, and `cluster2`)
 
+# Log in to the Gloo Mesh and Argo CD UI
+Once the installation is complete, you should be able to navigate to your LoadBalancer address to access Argo CD and the Gloo Mesh UI. The `bookinfo`, `httpbin`, and `ops-team` workspaces have already been precreated as well as the `mgmt` cluster and agent registered. 
+
+![Finished UI](images/aoa-gmui-1a.png)
+
+## Gloo Mesh UI through the Istio Ingressgateway
+This setup is configured to expose the Gloo Mesh UI with Gloo Gateway using a wildcard host '*'. This means when using the default type LoadBalancer setting, this will take the address of the generated load balancer for the Istio ingressgateway
+
+To access the Gloo Mesh UI you can go to https://<istio-gateway-address>/gmui
+
+### Gloo Mesh UI using port-forwarding
+You can also always use port-forward
+```
+kubectl port-forward -n gloo-mesh svc/gloo-mesh-ui 8090
+```
+
+## Argo UI through the Istio Ingressgateway
+This setup is configured to expose ArgoCD using a wildcard host '*' at the endpoint `/argo`. This means when using the default type LoadBalancer setting, this will take the address of the generated load balancer for the Istio ingressgateway
+
+To access the Argo CD UI you can go to https://<istio-gateway-address>/argo
+
+Login to Argo CD with:
+Username: admin
+Password: solo.io
+
+### Argo UI with port-forwarding
+access the argocd dashboard with port-forward:
+kubectl port-forward svc/argocd-server -n argocd 9999:443 --context mgmt
+
+navigate to http://localhost:9999/argo in your browser for argocd
+
+username: admin
+password: solo.io
+
+# What's Next?
+At this point, the base setup for a single cluster mesh is complete. It is possible now to deploy your own workloads in application namespaces and create Gloo Mesh CRDs and policies manually, or if you have forked this repo you can push those updates into Git and let Argo CD sync those changes for you.
+
+## Multi Cluster
+As noted above, this repo is meant to be deployed along with the following repos to create the entire multi-cluster architecture. When successfully deployed together, you will see that the Gloo Mesh Agent will register itself to the control plane and the `bookinfo` and `httpbin` workloads that exist on `cluster1` and `cluster2` (if also deployed) will be routable destinations in the mesh. 
+- https://github.com/ably77/aoa-cluster1
+- https://github.com/ably77/aoa-cluster2
+
+![Finished UI 1 worker](images/aoa-gmui-2a.png)
+
 # App of Apps Explained
 The app-of-apps pattern uses a generic Argo Application to sync all manifests in a particular Git directory, rather than directly point to a Kustomize, YAML, or Helm configuration. Anything pushed into the `environment/<overlay>/active` directory is deployed by it's corresponding app-of-app
 
