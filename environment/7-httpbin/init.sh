@@ -1,4 +1,4 @@
 #!/bin/bash
 
 echo "wave description:"
-echo "deploy httpbin app"
+echo "deploying httpbin workspace/workspacesettings"
