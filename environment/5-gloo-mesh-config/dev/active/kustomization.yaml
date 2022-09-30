@@ -5,8 +5,3 @@ kind: Kustomization
 # list of resources to be Applied
 resources:
 - ../../base/active/
-- bookinfo-workspace.yaml
-- bookinfo-workspacesettings.yaml
-- httpbin-workspace.yaml
-- httpbin-workspacesettings.yaml
-- rr-productpage.yaml
