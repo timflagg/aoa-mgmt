@@ -6,10 +6,6 @@ This repo provides a multitenant capable GitOps workflow structure that can be f
     - gloo mesh 2.1.0-beta27
     - istio 1.13.4
     - revision: 1-13
-- qa:
-    - gloo mesh 2.1.0-beta27
-    - istio 1.14.3
-    - revision: 1-14
 - dev:
     - gloo mesh 2.1.0-beta28
     - istio 1.15.0
@@ -40,7 +36,7 @@ The script will prompt you for input if not provided
 You can configure parameters used by the script in the `vars.txt`. This is particularily useful if you want to test an alternate repo branch or if you fork this repo.
 ```
 LICENSE_KEY=${1:-""}
-environment_overlay=${2:-""} # prod, qa, dev, base
+environment_overlay=${2:-""} # prod, dev, base
 cluster_context=${3:-mgmt}
 github_username=${4:-ably77}
 repo_name=${5:-aoa-mgmt}
