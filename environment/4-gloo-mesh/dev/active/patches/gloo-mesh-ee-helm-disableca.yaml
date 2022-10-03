@@ -20,7 +20,7 @@ spec:
           cluster: mgmt
         mgmtClusterName: mgmt
         glooMeshMgmtServer:
-          serviceType: ClusterIP
+          serviceType: LoadBalancer
           relay:
             disableCa: true
             disableCaCertGeneration: true
