@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cluster_context="mgmt"
-
 # echo port-forward commands
 echo 
 echo "access argocd dashboard:"
