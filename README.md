@@ -26,6 +26,7 @@ This repo is meant to be deployed along with the following repos to create the e
 ![cluster1 components](images/aoa-mgmt-1a.png)
 
 # Getting Started
+Run:
 This repo uses git submodules, so run the following command if contents of `aoa-tools` are missing
 ```
 git submodule update --init
@@ -33,14 +34,13 @@ git submodule update --init
 
 Run:
 ```
-./aoa-tools/deploy.sh $LICENSE_KEY $environment_overlay       # deploys on mgmt cluster by default if no input
+./aoa-tools/deploy.sh $license_key $environment_overlay
 ```
-The script will prompt you for input if not provided
 
 ## Variables
-You can configure parameters used by the script in the `vars.txt`. This is particularily useful if you want to test an alternate repo branch or if you fork this repo.
+You can configure parameters used by the script in the `vars.txt`. The script will prompt you for input if not provided.
 ```
-LICENSE_KEY=${1:-""}
+license_key=${1:-""}
 environment_overlay=${2:-""} # prod, dev, base
 cluster_context=${3:-mgmt}
 github_username=${4:-ably77}
