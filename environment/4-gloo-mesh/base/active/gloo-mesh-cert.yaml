@@ -14,7 +14,7 @@ spec:
     kind: Issuer
     name: relay-root-ca
   renewBefore: 8736h0m0s
-  secretName: relay-server-tls-secret
+  secretName: gloo-server-tls-cert
   usages:
     - server auth
     - client auth

@@ -15,7 +15,7 @@ spec:
     kind: Issuer
     name: relay-root-ca
   renewBefore: 8736h0m0s
-  secretName: gloo-mesh-agent-mgmt-tls-cert
+  secretName: gloo-agent-tls-cert
   usages:
     - digital signature
     - key encipherment
