@@ -33,7 +33,7 @@ git submodule update --init
 
 Run:
 ```
-./aoa-tools/deploy-mgmt.sh $LICENSE_KEY $environment_overlay $cluster_context       # deploys on mgmt cluster by default if no input
+./aoa-tools/deploy.sh $LICENSE_KEY $environment_overlay       # deploys on mgmt cluster by default if no input
 ```
 The script will prompt you for input if not provided
 
