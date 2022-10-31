@@ -24,6 +24,7 @@ spec:
           relay:
             disableCa: true
             disableCaCertGeneration: true
+            disableTokenGeneration: true
             tlsSecret:
               name: gloo-server-tls-cert
           ports:
