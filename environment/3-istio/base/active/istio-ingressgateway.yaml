@@ -15,13 +15,13 @@ spec:
   source:
     chart: gateway
     repoURL: https://istio-release.storage.googleapis.com/charts
-    targetRevision: 1.13.4
+    targetRevision: 1.15.0
     helm:
       values: |
         # Name allows overriding the release name. Generally this should not be set
         name: ""
         # revision declares which revision this gateway is a part of
-        revision: "1-13"
+        revision: "1-15"
         
         replicaCount: 1
         
@@ -45,12 +45,18 @@ spec:
         # Pod environment variables
         env: {}
 
+        podAnnotations:
+          prometheus.io/port: "15020"
+          prometheus.io/scrape: "true"
+          prometheus.io/path: "/stats/prometheus"
+          inject.istio.io/templates: "gateway"
+
         annotations:
           proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
         
         # Labels to apply to all resources
         labels:
-          istio.io/rev: 1-13
+          istio.io/rev: 1-15
           istio: ingressgateway
   syncPolicy:
     automated:
