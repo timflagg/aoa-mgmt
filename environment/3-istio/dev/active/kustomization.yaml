@@ -6,8 +6,8 @@ kind: Kustomization
 resources:
 - ../../base/active/
 
-#patchesStrategicMerge:
-#- patches/istio-base-1.15.0.yaml
-#- patches/istio-ingressgateway-1.15.0.yaml
-#- patches/istiod-1.15.0.yaml
-#- patches/grafana-1-15.yaml
+patchesStrategicMerge:
+- patches/istio-base-1.15.1.yaml
+- patches/istio-ingressgateway-1.15.1.yaml
+- patches/istiod-1.15.1.yaml
+- patches/grafana-1-15.yaml
