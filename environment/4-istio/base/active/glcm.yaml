@@ -13,12 +13,12 @@ spec:
       - name: mgmt
         # If set to true, the spec for this revision is applied in the cluster
         activeGateway: true
-      - name: cluster1
-        # If set to true, the spec for this revision is applied in the cluster
-        activeGateway: true
-      - name: cluster2
-        # If set to true, the spec for this revision is applied in the cluster
-        activeGateway: true
+      #- name: cluster1
+      #  # If set to true, the spec for this revision is applied in the cluster
+      #  activeGateway: true
+      #- name: cluster2
+      #  # If set to true, the spec for this revision is applied in the cluster
+      #  activeGateway: true
       istioOperatorSpec:
         # No control plane components are installed
         profile: empty
@@ -48,4 +48,22 @@ spec:
                     - port: 15443
                       targetPort: 15443
                       name: tls
+                  type: LoadBalancer
+            - enabled: true
+              name: istio-eastwestgateway
+              namespace: istio-eastwest
+              label:
+                istio: eastwestgateway
+              k8s:
+                env:
+                  - name: ISTIO_META_ROUTER_MODE
+                    value: sni-dnat
+                service:
+                  ports:
+                    - port: 15443
+                      targetPort: 15443
+                      # Gloo Mesh looks for this default name 'tls' on a gateway
+                      name: tls
+                  selector:
+                    istio: eastwestgateway
                   type: LoadBalancer
