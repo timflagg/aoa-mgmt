@@ -29,7 +29,8 @@ spec:
         tag: 1.15.1-solo
         components:
           ingressGateways:
-            - enabled: true
+            - name: ingressgateway-ns
+              enabled: true
               k8s:
                 service:
                   ports:
@@ -42,21 +43,16 @@ spec:
                       protocol: TCP
                       targetPort: 8443
                   type: LoadBalancer
-            - name: istio-ingressgateway-ew
-              enabled: true
+            - name: ingressgateway-ew
               label:
                 traffic: east-west
                 istio: ingressgateway-ew
+              enabled: true
               k8s:
                 env:
                   - name: ISTIO_META_ROUTER_MODE
                     value: "sni-dnat"
                 service:
-                  type: LoadBalancer
-                  selector:
-                    app: istio-ingressgateway
-                    istio: ingressgateway-ew
-                    traffic: east-west
                   ports:
                     - port: 443
                       targetPort: 8443
@@ -64,5 +60,4 @@ spec:
                     - port: 15443
                       targetPort: 15443
                       name: tls
-                      name: gloo-gateway-ew
-                      namespace: istio-gateways
+                  type: LoadBalancer
