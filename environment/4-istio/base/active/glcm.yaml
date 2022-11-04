@@ -51,7 +51,7 @@ spec:
                   type: LoadBalancer
             - enabled: true
               name: istio-eastwestgateway
-              namespace: istio-eastwest
+              namespace: istio-gateways
               label:
                 istio: eastwestgateway
               k8s:
