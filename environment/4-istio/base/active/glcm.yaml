@@ -30,6 +30,7 @@ spec:
         components:
           ingressGateways:
             - name: ingressgateway-ns
+              namespace: istio-gateways
               enabled: true
               k8s:
                 service:
