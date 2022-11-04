@@ -12,6 +12,8 @@ spec:
       namespace: gloo-mesh-addons
     - kind: SERVICE
       namespace: istio-gateways
+    - kind: SERVICE
+      namespace: istio-eastwest
     - kind: VIRTUAL_DESTINATION
       namespace: gloo-mesh-addons
   importFrom:
