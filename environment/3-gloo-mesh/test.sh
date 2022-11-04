@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sleep 30
+kubectl -n gloo-mesh wait --for condition=established --timeout=60s crd/kubernetesclusters.admin.gloo.solo.io
 
 kubectl apply --context ${cluster_context} -f- <<EOF
 apiVersion: admin.gloo.solo.io/v2
