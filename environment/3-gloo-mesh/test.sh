@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sleep 30
+
 kubectl apply --context ${cluster_context} -f- <<EOF
 apiVersion: admin.gloo.solo.io/v2
 kind: KubernetesCluster
