@@ -4,6 +4,8 @@ kind: Kustomization
 
 # list of resources to be Applied
 resources:
-- ilcm.yaml
 - gateway-cert.yaml
 - gateway-clusterissuer.yaml
+- ilcm-cluster1.yaml
+- ilcm.yaml
+
