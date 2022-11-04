@@ -1,0 +1,43 @@
+apiVersion: admin.gloo.solo.io/v2
+kind: GatewayLifecycleManager
+metadata:
+  name: istio-ingressgateway-mgmt
+  namespace: gloo-mesh
+spec:
+  installations:
+      # The revision for this installation, such as 1-14
+    - gatewayRevision: 1-15
+      # List all workload clusters to install Istio into
+      clusters:
+      - name: mgmt
+        # If set to true, the spec for this revision is applied in the cluster
+        activeGateway: true
+        # No control plane components are installed
+        profile: empty
+        # Solo.io Istio distribution repository; required for Gloo Istio.
+        # You get the repo key from your Solo Account Representative.
+        hub: us-docker.pkg.dev/gloo-mesh/istio-workshops
+        # The Solo.io Gloo Istio tag
+        tag: 1.15.1-solo
+        components:
+          ingressGateways:
+            - enabled: true
+              k8s:
+                service:
+                  ports:
+                    - name: http2
+                      port: 80
+                      protocol: TCP
+                      targetPort: 8080
+                    - name: https
+                      port: 443
+                      protocol: TCP
+                      targetPort: 8443
+                  selector:
+                    app: istio-ingressgateway
+                    istio: ingressgateway
+                  type: LoadBalancer
+              name: istio-ingressgateway
+              label:
+                istio: ingressgateway
+              namespace: istio-gateways

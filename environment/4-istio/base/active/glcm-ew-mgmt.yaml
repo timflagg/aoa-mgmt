@@ -1,7 +1,7 @@
 apiVersion: admin.gloo.solo.io/v2
 kind: GatewayLifecycleManager
 metadata:
-  name: all-gateways
+  name: istio-eastwestgateway-mgmt
   namespace: gloo-mesh
 spec:
   installations:
@@ -12,7 +12,6 @@ spec:
       - name: mgmt
         # If set to true, the spec for this revision is applied in the cluster
         activeGateway: true
-      istioOperatorSpec:
         # No control plane components are installed
         profile: empty
         # Solo.io Istio distribution repository; required for Gloo Istio.
@@ -22,24 +21,6 @@ spec:
         tag: 1.15.1-solo
         components:
           ingressGateways:
-            - enabled: true
-              k8s:
-                service:
-                  ports:
-                    - name: http2
-                      port: 80
-                      protocol: TCP
-                      targetPort: 8080
-                    - name: https
-                      port: 443
-                      protocol: TCP
-                      targetPort: 8443
-                  selector:
-                    app: istio-ingressgateway
-                    istio: ingressgateway
-                  type: LoadBalancer
-              name: istio-ingressgateway
-              namespace: istio-ingress
             - enabled: true
               name: istio-eastwestgateway
               namespace: istio-eastwest
