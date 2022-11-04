@@ -1,17 +1,24 @@
+---
 apiVersion: admin.gloo.solo.io/v2
 kind: GatewayLifecycleManager
 metadata:
-  name: istio-ingressgateway-mgmt
+  name: gloo-gateway
   namespace: gloo-mesh
 spec:
   installations:
-      # The revision for this installation, such as 1-14
+      # The revision for this installation, such as 1-15
     - gatewayRevision: 1-15
       # List all workload clusters to install Istio into
       clusters:
       - name: mgmt
         # If set to true, the spec for this revision is applied in the cluster
         activeGateway: true
+      #- name: cluster1
+      #  # If set to true, the spec for this revision is applied in the cluster
+      #  activeGateway: true
+      #- name: cluster2
+      #  # If set to true, the spec for this revision is applied in the cluster
+      #  activeGateway: true
       istioOperatorSpec:
         # No control plane components are installed
         profile: empty
@@ -34,11 +41,8 @@ spec:
                       port: 443
                       protocol: TCP
                       targetPort: 8443
-                  selector:
-                    app: istio-ingressgateway
-                    istio: ingressgateway
                   type: LoadBalancer
-              name: istio-ingressgateway
+              name: gloo-gateway
               label:
                 istio: ingressgateway
               namespace: istio-gateways
