@@ -8,5 +8,5 @@ resources:
 - gateway-clusterissuer.yaml
 - glcm-ew-mgmt.yaml
 - glcm-ns-mgmt.yaml
-- ilcm.yaml
+- ilcm-mgmt.yaml
 
