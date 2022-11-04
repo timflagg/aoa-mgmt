@@ -12,6 +12,7 @@ spec:
       - name: mgmt
         # If set to true, the spec for this revision is applied in the cluster
         activeGateway: true
+      istioOperatorSpec:
         # No control plane components are installed
         profile: empty
         # Solo.io Istio distribution repository; required for Gloo Istio.
