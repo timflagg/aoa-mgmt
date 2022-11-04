@@ -8,4 +8,4 @@ spec:
     eastWestGateways:
     - selector:
         labels:
-          istio: eastwestgateway
+          istio: ingressgateway-ew

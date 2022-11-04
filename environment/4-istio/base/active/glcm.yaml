@@ -42,5 +42,27 @@ spec:
                       protocol: TCP
                       targetPort: 8443
                   type: LoadBalancer
-              name: gloo-gateway
-              namespace: istio-gateways
+            - name: istio-ingressgateway-ew
+              enabled: true
+              label:
+                traffic: east-west
+                istio: ingressgateway-ew
+              k8s:
+                env:
+                  - name: ISTIO_META_ROUTER_MODE
+                    value: "sni-dnat"
+                service:
+                  type: LoadBalancer
+                  selector:
+                    app: istio-ingressgateway
+                    istio: ingressgateway-ew
+                    traffic: east-west
+                  ports:
+                    - port: 443
+                      targetPort: 8443
+                      name: https
+                    - port: 15443
+                      targetPort: 15443
+                      name: tls
+                      name: gloo-gateway-ew
+                      namespace: istio-gateways
