@@ -6,3 +6,4 @@ kind: Kustomization
 resources:
 - ilcm.yaml
 - gateway-cert.yaml
+- gateway-clusterissuer.yaml
