@@ -38,6 +38,4 @@ spec:
                     istio: ingressgateway
                   type: LoadBalancer
               name: istio-ingressgateway
-              label:
-                istio: ingressgateway
               namespace: istio-gateways
