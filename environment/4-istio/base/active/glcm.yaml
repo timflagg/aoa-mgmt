@@ -1,24 +1,17 @@
----
 apiVersion: admin.gloo.solo.io/v2
 kind: GatewayLifecycleManager
 metadata:
-  name: gloo-gateway
+  name: all-gateways
   namespace: gloo-mesh
 spec:
   installations:
-      # The revision for this installation, such as 1-15
+      # The revision for this installation, such as 1-14
     - gatewayRevision: 1-15
       # List all workload clusters to install Istio into
       clusters:
       - name: mgmt
         # If set to true, the spec for this revision is applied in the cluster
         activeGateway: true
-      #- name: cluster1
-      #  # If set to true, the spec for this revision is applied in the cluster
-      #  activeGateway: true
-      #- name: cluster2
-      #  # If set to true, the spec for this revision is applied in the cluster
-      #  activeGateway: true
       istioOperatorSpec:
         # No control plane components are installed
         profile: empty
@@ -29,11 +22,7 @@ spec:
         tag: 1.15.1-solo
         components:
           ingressGateways:
-            - name: ingressgateway-ns
-              namespace: istio-gateways
-              label:
-                istio: ingressgateway
-              enabled: true
+            - enabled: true
               k8s:
                 service:
                   ports:
@@ -45,18 +34,15 @@ spec:
                       port: 443
                       protocol: TCP
                       targetPort: 8443
-                    - port: 443
-                      targetPort: 8443
-                      name: https
-                    - port: 15443
-                      targetPort: 15443
-                      name: tls
                   selector:
+                    app: istio-ingressgateway
                     istio: ingressgateway
                   type: LoadBalancer
+              name: istio-ingressgateway
+              namespace: istio-ingress
             - enabled: true
               name: istio-eastwestgateway
-              namespace: istio-gateways
+              namespace: istio-eastwest
               label:
                 istio: eastwestgateway
               k8s:
