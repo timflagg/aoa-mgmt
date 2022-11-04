@@ -2,11 +2,15 @@
 This repo provides a multitenant capable GitOps workflow structure that can be forked and used to demonstrate the deployment and configuration of a multi-cluster mesh demo as code using the Argo CD app-of-apps pattern.
 
 # versions
-- prod:
+- base:
     - gloo mesh 2.1.0
-    - istio 1.15.1 (ILCM)
+    - istio 1.15.1 (Helm)
     - revision: 1-15
 - dev:
+    - gloo mesh 2.1.0
+    - istio 1.15.1 (Helm)
+    - revision: 1-15
+- ilcm:
     - gloo mesh 2.1.0
     - istio 1.15.1 (ILCM)
     - revision: 1-15

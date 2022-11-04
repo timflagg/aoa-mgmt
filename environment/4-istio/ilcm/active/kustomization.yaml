@@ -4,4 +4,9 @@ kind: Kustomization
 
 # list of resources to be Applied
 resources:
-- ../../base/active/
+- gateway-cert.yaml
+- gateway-clusterissuer.yaml
+#- glcm-ew-mgmt.yaml
+- glcm-ns-mgmt.yaml
+- ilcm.yaml
+

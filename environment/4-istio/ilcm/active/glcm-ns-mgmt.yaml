@@ -43,6 +43,4 @@ spec:
                       targetPort: 8443
                   type: LoadBalancer
               name: gloo-gateway
-              label:
-                istio: ingressgateway
               namespace: istio-gateways
