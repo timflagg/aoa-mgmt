@@ -1,8 +1,8 @@
 apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
+kind: Issuer
 metadata:
-  name: ca-issuer
+  name: gateway-ca
   namespace: cert-manager
 spec:
   ca:
-    secretName: cert-manager-cacerts
+    secretName: gateway-ca
