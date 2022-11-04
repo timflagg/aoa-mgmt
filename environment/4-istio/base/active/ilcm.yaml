@@ -12,12 +12,12 @@ spec:
       - name: mgmt
         # If set to true, the spec for this revision is applied in the cluster
         defaultRevision: true
-      #- name: cluster1
-      #  # If set to true, the spec for this revision is applied in the cluster
-      #  defaultRevision: true
-      #- name: cluster2
-      #  # If set to true, the spec for this revision is applied in the cluster
-      #  defaultRevision: true
+      - name: cluster1
+        # If set to true, the spec for this revision is applied in the cluster
+        defaultRevision: true
+      - name: cluster2
+        # If set to true, the spec for this revision is applied in the cluster
+        defaultRevision: true
       istioOperatorSpec:
         # Only the control plane components are installed
         # (https://istio.io/latest/docs/setup/additional-setup/config-profiles/)
@@ -84,12 +84,12 @@ spec:
       - name: mgmt
         # If set to true, the spec for this revision is applied in the cluster
         activeGateway: true
-      #- name: cluster1
-      #  # If set to true, the spec for this revision is applied in the cluster
-      #  activeGateway: true
-      #- name: cluster2
-      #  # If set to true, the spec for this revision is applied in the cluster
-      #  activeGateway: true
+      - name: cluster1
+        # If set to true, the spec for this revision is applied in the cluster
+        activeGateway: true
+      - name: cluster2
+        # If set to true, the spec for this revision is applied in the cluster
+        activeGateway: true
       istioOperatorSpec:
         # No control plane components are installed
         profile: empty
