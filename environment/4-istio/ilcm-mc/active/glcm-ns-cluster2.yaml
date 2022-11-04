@@ -1,17 +1,18 @@
+---
 apiVersion: admin.gloo.solo.io/v2
 kind: GatewayLifecycleManager
 metadata:
-  name: istio-eastwestgateway-mgmt
+  name: istio-ingressgateway-cluster2
   namespace: gloo-mesh
-  annotations:
-    argocd.argoproj.io/sync-wave: "-7"
+  #annotations:
+  #  argocd.argoproj.io/sync-wave: "-7"
 spec:
   installations:
-      # The revision for this installation, such as 1-14
+      # The revision for this installation, such as 1-15
     - gatewayRevision: 1-15
       # List all workload clusters to install Istio into
       clusters:
-      - name: mgmt
+      - name: cluster2
         # If set to true, the spec for this revision is applied in the cluster
         activeGateway: true
       istioOperatorSpec:
@@ -24,21 +25,20 @@ spec:
         tag: 1.15.1-solo
         components:
           ingressGateways:
-            - enabled: true
-              name: istio-eastwestgateway
-              namespace: istio-eastwest
-              label:
-                istio: eastwestgateway
+            - name: istio-ingressgateway
+              namespace: istio-gateways
+              enabled: true
               k8s:
-                env:
-                  - name: ISTIO_META_ROUTER_MODE
-                    value: sni-dnat
                 service:
                   ports:
-                    - port: 15443
-                      targetPort: 15443
-                      # Gloo Mesh looks for this default name 'tls' on a gateway
-                      name: tls
-                  selector:
-                    istio: eastwestgateway
+                    - name: http2
+                      port: 80
+                      protocol: TCP
+                      targetPort: 8080
+                    - name: https
+                      port: 443
+                      protocol: TCP
+                      targetPort: 8443
                   type: LoadBalancer
+                  selector:
+                    istio: ingressgateway

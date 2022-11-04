@@ -1,17 +1,17 @@
 apiVersion: admin.gloo.solo.io/v2
 kind: GatewayLifecycleManager
 metadata:
-  name: istio-eastwestgateway-mgmt
+  name: istio-eastwestgateway-cluster2
   namespace: gloo-mesh
-  annotations:
-    argocd.argoproj.io/sync-wave: "-7"
+  #annotations:
+  #  argocd.argoproj.io/sync-wave: "-7"
 spec:
   installations:
       # The revision for this installation, such as 1-14
     - gatewayRevision: 1-15
       # List all workload clusters to install Istio into
       clusters:
-      - name: mgmt
+      - name: cluster2
         # If set to true, the spec for this revision is applied in the cluster
         activeGateway: true
       istioOperatorSpec:
