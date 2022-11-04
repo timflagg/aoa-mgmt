@@ -12,4 +12,3 @@ resources:
 - gloo-mesh-cert.yaml
 - gloo-mesh-crds.yaml
 - gloo-mesh-ee-helm.yaml
-- gloo-mesh-relay-tls-signing-cert.yaml

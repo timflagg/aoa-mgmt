@@ -46,17 +46,8 @@ spec:
               issuerUrl: https://dev-22653158.okta.com/oauth2/default
               # The URL that the UI for the OIDC app is available at, from the DNS and other ingress settings that expose the OIDC app UI service.
               appUrl: "https://gmui-local.glootest.com/gmui"
-          deploymentOverrides:
-            spec:
-              template:
-                metadata:
-                  annotations:
-                    proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
-                  labels:
-                    istio.io/rev: "1-13"
-                    sidecar.istio.io/inject: "true"
     repoURL: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
-    targetRevision: 2.1.0-rc3
+    targetRevision: 2.1.0
   syncPolicy:
     automated:
       prune: true
