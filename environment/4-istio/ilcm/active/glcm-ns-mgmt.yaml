@@ -4,6 +4,7 @@ kind: GatewayLifecycleManager
 metadata:
   name: istio-ingressgateway
   namespace: gloo-mesh
+  argocd.argoproj.io/sync-wave: "-7"
 spec:
   installations:
       # The revision for this installation, such as 1-15
@@ -13,12 +14,6 @@ spec:
       - name: mgmt
         # If set to true, the spec for this revision is applied in the cluster
         activeGateway: true
-      #- name: cluster1
-      #  # If set to true, the spec for this revision is applied in the cluster
-      #  activeGateway: true
-      #- name: cluster2
-      #  # If set to true, the spec for this revision is applied in the cluster
-      #  activeGateway: true
       istioOperatorSpec:
         # No control plane components are installed
         profile: empty
@@ -29,7 +24,9 @@ spec:
         tag: 1.15.1-solo
         components:
           ingressGateways:
-            - enabled: true
+            - name: istio-ingressgateway
+              namespace: istio-gateways
+              enabled: true
               k8s:
                 service:
                   ports:
@@ -42,5 +39,5 @@ spec:
                       protocol: TCP
                       targetPort: 8443
                   type: LoadBalancer
-              name: istio-ingressgateway
-              namespace: istio-gateways
+                  selector:
+                    istio: ingressgateway

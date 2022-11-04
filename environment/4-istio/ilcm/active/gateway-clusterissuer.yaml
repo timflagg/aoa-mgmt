@@ -3,6 +3,7 @@ kind: ClusterIssuer
 metadata:
   name: gateway-ca
   namespace: cert-manager
+  argocd.argoproj.io/sync-wave: "-10"
 spec:
   ca:
     secretName: gateway-ca
