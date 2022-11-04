@@ -31,6 +31,8 @@ spec:
           ingressGateways:
             - name: ingressgateway-ns
               namespace: istio-gateways
+              label:
+                istio: ingressgateway
               enabled: true
               k8s:
                 service:
@@ -49,6 +51,8 @@ spec:
                     - port: 15443
                       targetPort: 15443
                       name: tls
+                  selector:
+                    istio: ingressgateway
                   type: LoadBalancer
             - enabled: true
               name: istio-eastwestgateway
