@@ -67,7 +67,7 @@ spec:
 apiVersion: admin.gloo.solo.io/v2
 kind: GatewayLifecycleManager
 metadata:
-  name: gloo-gateway
+  name: gloo-gateway-cluster1
   namespace: gloo-mesh
 spec:
   installations:
