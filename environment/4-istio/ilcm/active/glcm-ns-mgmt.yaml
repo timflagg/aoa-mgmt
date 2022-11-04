@@ -2,7 +2,7 @@
 apiVersion: admin.gloo.solo.io/v2
 kind: GatewayLifecycleManager
 metadata:
-  name: gloo-gateway
+  name: istio-ingressgateway
   namespace: gloo-mesh
 spec:
   installations:
@@ -42,5 +42,5 @@ spec:
                       protocol: TCP
                       targetPort: 8443
                   type: LoadBalancer
-              name: gloo-gateway
+              name: istio-ingressgateway
               namespace: istio-gateways
