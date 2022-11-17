@@ -20,6 +20,6 @@ spec:
   dnsNames:
   - '*'
   issuerRef:
-    name: ca-issuer
+    name: gateway-ca
     kind: ClusterIssuer
     group: cert-manager.io
