@@ -6,6 +6,7 @@ kind: Kustomization
 resources:
 - argocd-mgmt-rt-443.yaml
 - gloo-mesh-global-workspacesettings.yaml
+- gloo-mesh-mgmt-extauthserver.yaml
 - gloo-mesh-mgmt-kubernetescluster.yaml
 - gloo-mesh-mgmt-virtualgateway-443.yaml
 - gloo-mesh-ops-team-workspace.yaml
