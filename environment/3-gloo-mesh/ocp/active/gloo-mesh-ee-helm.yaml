@@ -39,7 +39,7 @@ spec:
         - name: prometheus.enabled
           value: 'false'
         - name: licenseKey
-          value: '[$license_key]'
+          value: 'eyJhZGRPbnMiOiIiLCJleHAiOjE2NzM2NTQ0MDAsImlhdCI6MTY3MTA2MjQwMCwiayI6Ikl5bjR1dyIsImx0IjoidHJpYWwiLCJwcm9kdWN0IjoiZ2xvby1tZXNoLWdhdGV3YXkifQ.u51Wwf-E5U9JvOBRJcEfEdzJ3_c_7j6FZsSBbrHaY5k'
   project: default
   syncPolicy:
     automated:
