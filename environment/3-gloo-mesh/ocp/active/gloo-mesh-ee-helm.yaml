@@ -14,8 +14,8 @@ spec:
     helm:
       skipCrds: true
       parameters:
-        - name: licenseSecretName
-          value: 'gloo-mesh-license'
+        #- name: licenseSecretName
+        #  value: 'gloo-mesh-license'
         - name: glooMeshMgmtServer.relay.disableCA
           value: 'false'
         - name: glooMeshMgmtServer.relay.disableCaCertGeneration
@@ -38,8 +38,8 @@ spec:
           value: mgmt
         - name: prometheus.enabled
           value: 'false'
-        #- name: licenseKey
-        #  value: 'eyJhZGRPbnMiOlt7IkFkZG9uIjowLCJFeHBpcmVzQXQiOjE2ODg0Mjg5MDYsIkxpY2Vuc2VUeXBlIjoiZW50In1dLCJleHAiOjE2ODg0Mjg5MDYsImlhdCI6MTY2MjUwODkwNiwiayI6InJ1ZDExZyIsImx0IjoiZW50IiwicHJvZHVjdCI6Imdsb28tdHJpYWwifQ.by7jozgqnuvVDigCfnO5cZMsY3pklnIpXIt8wDPejgM'
+        - name: licenseKey
+          value: '[$license_key]'
   project: default
   syncPolicy:
     automated:
