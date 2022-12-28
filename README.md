@@ -105,7 +105,10 @@ As noted above, this repo is meant to be deployed along with the following repos
 - https://github.com/ably77/aoa-cluster1
 - https://github.com/ably77/aoa-cluster2
 
-![Finished UI 1 worker](images/aoa-gmui-2a.png)
+
+### Youtube Demonstration of Multi Cluster
+Watch the process here:
+[![Watch the video](images/aoa-gmui-3a.png)](https://youtu.be/_-Gqll77ibI)
 
 # App of Apps Explained
 The app-of-apps pattern uses a generic Argo Application to sync all manifests in a particular Git directory, rather than directly point to a Kustomize, YAML, or Helm configuration. Anything pushed into the `environment/<overlay>/active` directory is deployed by it's corresponding app-of-app
