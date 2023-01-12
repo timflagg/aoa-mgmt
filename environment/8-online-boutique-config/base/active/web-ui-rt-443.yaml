@@ -1,0 +1,50 @@
+apiVersion: networking.gloo.solo.io/v2
+kind: RouteTable
+metadata:
+  name: frontend
+  namespace: web-ui
+spec:
+  hosts:
+    - 'shop.kapoozi.com'
+  virtualGateways:
+    - name: mgmt-north-south-gw-443
+      namespace: istio-gateways
+      cluster: mgmt
+  workloadSelectors: []
+  http:
+    - name: frontend
+      labels:
+        virtual-destination: frontend
+        route_name: frontend
+      matchers:
+      - uri:
+          prefix: /
+      - uri:
+          prefix: /callback
+      - uri:
+          prefix: /logout
+      forwardTo:
+        destinations:
+          - ref:
+              name: frontend
+              namespace: web-ui
+            kind: VIRTUAL_DESTINATION
+            port:
+              number: 80
+    - name: frontend-v2
+      labels:
+        virtual-destination: frontend-v2
+        route_name: frontend-v2
+      matchers:
+      - uri:
+          prefix: /
+        headers:
+        - name: user
+          value: v2
+      forwardTo:
+        destinations:
+        - ref:
+            name: frontend-v2
+            namespace: web-ui
+          port:
+            number: 80
