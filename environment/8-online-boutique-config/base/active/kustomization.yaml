@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
 #- allownothing-accesspolicy.yaml
+- backend-apis-ns.yaml
 - backend-apis-team-workspace.yaml
 - backend-apis-team-workspacesettings.yaml
 - failoverpolicy.yaml
@@ -15,5 +16,5 @@ resources:
 - web-team-workspace.yaml
 - web-team-workspacesettings.yaml
 #- web-ui-extauth-policy.yaml
+- web-ui-ns.yaml
 - web-ui-rt-443.yaml
-
