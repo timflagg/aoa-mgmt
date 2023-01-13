@@ -1,24 +1,6 @@
 apiVersion: networking.gloo.solo.io/v2
 kind: VirtualDestination
 metadata:
-  name: frontend
-  namespace: web-ui
-spec:
-  hosts:
-  #- frontend-vd.mesh
-  - frontend.web-ui-team.solo-io.mesh
-  services:
-  - labels:
-      app: frontend
-  ports:
-  - number: 80
-    protocol: HTTP
-    targetPort:
-      name: http
----
-apiVersion: networking.gloo.solo.io/v2
-kind: VirtualDestination
-metadata:
   name: checkout
   namespace: backend-apis
 spec:

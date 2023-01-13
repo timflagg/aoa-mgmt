@@ -26,8 +26,8 @@ spec:
       forwardTo:
         destinations:
           - ref:
-              name: frontend
+              name: frontend            # Name we gave the VirtualDestination
               namespace: web-ui
-            kind: VIRTUAL_DESTINATION
+            kind: VIRTUAL_DESTINATION   # Multi-cluster destination
             port:
               number: 80
