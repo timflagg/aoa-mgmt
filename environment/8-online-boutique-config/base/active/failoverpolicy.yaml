@@ -7,7 +7,7 @@ spec:
   applyToDestinations:
   - kind: VIRTUAL_DESTINATION
     selector:
-      namespace: web-ui
+      namespace: web-ui     # Applies to all of this kind in this namespace
   config:
     # enable default locality based load balancing
     localityMappings: []

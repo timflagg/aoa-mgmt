@@ -1,3 +1,4 @@
 /template
 tools/license-secretref.sh
 environments/mgmt/mesh-config/non-active/routing/solocon/
+*.swp

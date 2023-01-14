@@ -1,15 +1,14 @@
 apiVersion: networking.gloo.solo.io/v2
 kind: VirtualDestination
 metadata:
-  name: frontend      # Name of this new VirtualDestination (will be referred to)
+  name: frontend      # Name of this new VirtualDestination (it is referred to)
   namespace: web-ui
 spec:
   hosts:
-  #- frontend-vd.mesh
-  - frontend.web-ui-team.solo-io.mesh # Creates a multi-cluster hostname
+  - frontend.web-ui-team.solo-io.mesh   # Creates a new multi-cluster mesh hostname
   services:
   - labels:
-      app: frontend   # Selects services with this label
+      app: frontend   # Forwards traffic to services with this label
   ports:
   - number: 80
     protocol: HTTP

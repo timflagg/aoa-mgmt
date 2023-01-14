@@ -7,7 +7,7 @@ spec:
   applyToDestinations:
   - kind: VIRTUAL_DESTINATION
     selector:
-      namespace: web-ui
+      namespace: web-ui   # Policy is applied to all Virtual Destinations in this namespace
   config:
     consecutiveErrors: 2
     interval: 5s

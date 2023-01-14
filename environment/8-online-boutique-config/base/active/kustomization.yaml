@@ -12,7 +12,8 @@ resources:
 #- frontend-mirrorpolicy.yaml
 - outlierdetectionpolicy.yaml
 #- plow-loadgen-argo.yaml
-- vd.yaml
+- vd-web-ui.yaml
+- vd-other.yaml
 - web-team-workspace.yaml
 - web-team-workspacesettings.yaml
 #- web-ui-extauth-policy.yaml

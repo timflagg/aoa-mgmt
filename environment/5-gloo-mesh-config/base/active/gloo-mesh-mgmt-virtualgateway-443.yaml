@@ -12,7 +12,7 @@ spec:
       mode: SIMPLE
       secretName: tls-secret
   workloads:
-  - selector:
+  - selector:  # Selects which Istio Ingress gateway(s) this is configuring
       cluster: mgmt
       labels:
         istio: ingressgateway
