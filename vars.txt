@@ -9,4 +9,4 @@ environment_overlay=${2:-""} # base, ilcm, m1
 cluster_context=${3:-mgmt}
 github_username=${4:-timflagg}
 repo_name=${5:-aoa-mgmt}
-target_branch=${6:-HEAD}
+target_branch=${6:-boutique}
